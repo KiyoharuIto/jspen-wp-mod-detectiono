@@ -15,6 +15,7 @@ function add_post_modified_column($columns) {
     return $columns;
 }
 add_filter('manage_edit-page_columns', 'add_post_modified_column');
+add_filter('manage_edit-post_columns', 'add_post_modified_column');
 
 // カスタムカラムを追加
 function custom_page_columns($column_name, $id) {
@@ -30,11 +31,14 @@ function custom_page_columns($column_name, $id) {
     }
 }
 add_action('manage_page_posts_custom_column', 'custom_page_columns', 10, 2);
+add_action('manage_post_posts_custom_column', 'custom_page_columns', 10, 2);
+
 // 並び順変更を追加
 function custom_page_sortable_columns($columns) {
     $columns['post_modified'] = 'post_modified';
     return $columns;
 }
 add_filter('manage_edit-page_sortable_columns', 'custom_page_sortable_columns');
+add_filter('manage_edit-post_sortable_columns', 'custom_page_sortable_columns');
 
 ?>
